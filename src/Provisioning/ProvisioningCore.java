@@ -132,7 +132,6 @@ public class ProvisioningCore {
 									, "Get address "+taa.na.get(j).pub_address+" of "+taa.na.get(j).name);
 							String roleOfNode = taa.na.get(j).role.toLowerCase();
 							if(roleOfNode.equals("master") || roleOfNode.equals("slave")){
-<<<<<<< HEAD
 								if(tmpt.cloudProvider.toLowerCase().contains("ec2")){
 									String locationName = EC2TunnelConf.endpointMap.get(taa.na.get(j).domain);
 									String certDir = certDirFromConf("ec2", allconf.get("ec2"));
@@ -153,13 +152,6 @@ public class ProvisioningCore {
 								}
 								
 								}
-=======
-								deploy_input.add(taa.na.get(j).pub_address+" "+taa.userAccountName
-										+" "+taa.sshKeyPath+" "+roleOfNode);
-								swLog.log("INFO", "ProvisioningCore.getProvisionResults"
-										, taa.na.get(j).pub_address+" is the "+roleOfNode+" node in container cluster");
-							}
->>>>>>> f1878db384bff1a13b888b42eca1d0a4a6e67b25
 							else if(roleOfNode.equals("null"))
 								swLog.log("INFO", "ProvisioningCore.getProvisionResults"
 										, taa.na.get(j).pub_address+" is not in container cluster");

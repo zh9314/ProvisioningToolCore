@@ -27,6 +27,7 @@ public class toscaTotalAnalysis {
 		try {
             File file = new File(toscaFilePath);
             YamlStream stream = Yaml.loadStream(file);
+            boolean find_conn = false;
             for (Iterator iter = stream.iterator(); iter.hasNext();) {
                 HashMap hashMap = (HashMap) iter.next();
                 for (Iterator iter2 = hashMap.entrySet().iterator(); iter2.hasNext();) {
@@ -41,9 +42,11 @@ public class toscaTotalAnalysis {
                     }
                     if(keyS.equals("connections")){
                     	connections = json2connection(jsonValue);
+                    	find_conn = true;
                     }
                 }
-            }
+            }if(!find_conn)
+            	connections = new ArrayList<Connection>();
             
         } catch (Exception e) {
             e.printStackTrace();

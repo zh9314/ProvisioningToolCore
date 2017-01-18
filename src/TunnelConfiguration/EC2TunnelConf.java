@@ -11,11 +11,7 @@ import toscaTransfer.Connection.node;
 
 public class EC2TunnelConf implements TunnelConf {
 	
-<<<<<<< HEAD
 	public static final Map<String, String> endpointMap;
-=======
-	private static final Map<String, String> endpointMap;
->>>>>>> f1878db384bff1a13b888b42eca1d0a4a6e67b25
 	static {
 		Map<String, String> em = new HashMap<String, String>();
 		em.put("ec2.us-east-1.amazonaws.com", "Virginia");
@@ -86,8 +82,9 @@ public class EC2TunnelConf implements TunnelConf {
 			ps.waitFor();
 	        ps = Runtime.getRuntime().exec("sh "+runFilePath);  
 			ps.waitFor();
-			ps = Runtime.getRuntime().exec("rm "+runFilePath+" "+confPath);  
-			ps.waitFor();
+			//Thread.sleep(2000);
+			//ps = Runtime.getRuntime().exec("rm "+runFilePath+" "+confPath);  
+			//ps.waitFor();
 			System.out.println("Configuration for node "+info.name+" is done!");
 		} catch (IOException | InterruptedException e) {
 			// TODO Auto-generated catch block
