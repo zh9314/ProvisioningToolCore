@@ -349,7 +349,7 @@ public class ProvisioningCore {
 				System.exit(-1);
 			}
 			
-			swLog.log("INFO", "ProvisioningCore.conf4Connections"
+			swLog.log("DEBUG", "ProvisioningCore.conf4Connections"
 					, "Get target node certificates directory or path! :: "+TargetCertDir);
 			String targetConfFile = TargetTC.generateConfFile("target", tmpc.source.pub_address, tmpc.source.pri_address,
 					tmpc.target.pri_address, subnet, netmask, tmpc.target.port_name);
