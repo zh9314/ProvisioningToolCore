@@ -22,7 +22,7 @@ import toscaTransfer.toscaTotalAnalysis;
 
 public class ProvisioningCore {
 
-    public static String ec2Jar = "EC2Provision.jar";
+//    public static String ec2Jar = "EC2Provision.jar";
     public static String geniJar = "ExoGENIProvision.jar";
 
     public static String currentDir = "";
@@ -40,11 +40,10 @@ public class ProvisioningCore {
 
     /**
      * Convert netmask int to string (255.255.255.0 returned if nm > 32 or nm <
-     * 1)
-	 * @
+     * 1) @
      *
-     * param nm
-     * @return
+     *
+     * param nm @return
      */
     public static String netmaskIntToString(int nm) {
         if ((nm > 32) || (nm < 1)) {
@@ -80,8 +79,8 @@ public class ProvisioningCore {
 
 //			try {
             String confPath = allconf.get("ec2");
-            String args = currentDir + ec2Jar + " " + confPath + " " + topologyPath;
-            Provisioning.ARP.main(args.split(" "));
+            String[] args = new String[]{confPath, topologyPath};
+            Provisioning.ARP.main(args);
 //				Process ps = Runtime.getRuntime().exec("java -jar "+currentDir+ec2Jar+" "+confPath+" "+topologyPath);
 //				ps.waitFor();
 //			} catch (IOException | InterruptedException e) {
