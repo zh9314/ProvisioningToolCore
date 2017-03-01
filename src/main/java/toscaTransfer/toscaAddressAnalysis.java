@@ -1,13 +1,12 @@
 package toscaTransfer;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.ho.yaml.Yaml;
-import org.ho.yaml.YamlStream;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,27 +31,30 @@ public class toscaAddressAnalysis {
     public void generateNameAddress(String toscaFilePath, String topologyName) {
         try {
             File file = new File(toscaFilePath);
-            YamlStream stream = Yaml.loadStream(file);
-            for (Iterator iter = stream.iterator(); iter.hasNext();) {
-                HashMap hashMap = (HashMap) iter.next();
-                for (Iterator iter2 = hashMap.entrySet().iterator(); iter2.hasNext();) {
-                    Map.Entry entry = (Map.Entry) iter2.next();
-                    Object key = entry.getKey();
-                    Object value = entry.getValue();
-                    String keyS = key.toString();
-                    String valueS = value.toString();
-                    String jsonValue = transfer2json(valueS);
-                    if (keyS.equals("components")) {
-                        na = json2NameAddress(jsonValue, topologyName);
-                    }
-                    if (keyS.equals("publicKeyPath")) {
-                        sshKeyPath = valueS;
-                    }
-                    if (keyS.equals("userName")) {
-                        userAccountName = valueS;
-                    }
+//            YamlStream stream = Yaml.loadStream(file);
+            org.yaml.snakeyaml.Yaml yaml = new org.yaml.snakeyaml.Yaml();
+            Map<String, Object> hashMap = (Map<String, Object>) yaml.load(new FileInputStream(file));
+
+//            for (Iterator iter = stream.iterator(); iter.hasNext();) {
+//                HashMap hashMap = (HashMap) iter.next();
+            for (Iterator iter2 = hashMap.entrySet().iterator(); iter2.hasNext();) {
+                Map.Entry entry = (Map.Entry) iter2.next();
+                Object key = entry.getKey();
+                Object value = entry.getValue();
+                String keyS = key.toString();
+                String valueS = value.toString();
+                String jsonValue = transfer2json(valueS);
+                if (keyS.equals("components")) {
+                    na = json2NameAddress(jsonValue, topologyName);
+                }
+                if (keyS.equals("publicKeyPath")) {
+                    sshKeyPath = valueS;
+                }
+                if (keyS.equals("userName")) {
+                    userAccountName = valueS;
                 }
             }
+//            }
 
         } catch (Exception e) {
             e.printStackTrace();

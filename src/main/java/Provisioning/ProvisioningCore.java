@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +13,6 @@ import TunnelConfiguration.EC2TunnelConf;
 import TunnelConfiguration.GENITunnelConf;
 import TunnelConfiguration.TunnelConf;
 import toscaTransfer.Connection;
-import toscaTransfer.Connection.node;
 import toscaTransfer.Topology;
 import toscaTransfer.toscaAddressAnalysis;
 import toscaTransfer.toscaAddressAnalysis.name_address;
@@ -402,7 +400,6 @@ public class ProvisioningCore {
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         currentDir = getCurrentDir();
-        System.out.println(currentDir);
         if (!analysisArgs(args)) {
             System.out.println("Error: argument is wrong!");
             return;
